@@ -1,0 +1,8 @@
+a,
+ul,
+li {
+  list-style-type: none;
+  color: red;
+  text-decoration: none;
+  padding: 10px
+}
