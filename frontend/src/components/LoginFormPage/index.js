@@ -6,16 +6,14 @@ import { Redirect } from 'react-router-dom';
 
 import './LoginForm.css';
 
-function LoginFormPage() {
+const LoginFormPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
+  if (sessionUser) return <Redirect to="/" />;
 
 
   const handleSubmit = (e) => {
