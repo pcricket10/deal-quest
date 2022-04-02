@@ -47,7 +47,7 @@ function LoginFormPage() {
         <input
           type="password"
           value={password}
-          onChange={e => e.target.value}
+          onChange={e => setPassword(e.target.value)}
           required
         />
       </label>
