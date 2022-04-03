@@ -6,3 +6,61 @@ li {
   text-decoration: none;
   padding: 10px
 }
+
+nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+}
+
+a {
+  padding: 0;
+}
+
+.home {
+  justify-self: flex-start;
+  height: 40px;
+  width: 40px;
+}
+
+button {
+  background-color: lightgray;
+  border: 0;
+  /* box-shadow: 0 0 1px 2px lightgreen; */
+}
+
+button:hover {
+  background-color: gray;
+}
+
+
+.profile-button {
+  justify-self: flex-end;
+  height: 40px;
+  width: 40px;
+}
+
+.login-signup {
+  justify-self: flex-end;
+}
+
+.signup,
+.login {
+  height: 40px;
+  width: 80px;
+}
+
+.profile-dropdown {
+  background-color: lightgray;
+  display: block;
+  position: fixed;
+  right: 0;
+  top: 22px;
+  /* border: 1px solid black; */
+}

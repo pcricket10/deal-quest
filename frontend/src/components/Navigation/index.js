@@ -16,19 +16,17 @@ const Navigation = ({ isLoaded }) => {
     );
   } else {
     sessionLinks = (
-      <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      <div className='login-signup'>
+        <NavLink to="/login"><button className="login">Log In</button></NavLink>
+        <NavLink to="/signup"><button className="signup">Sign Up</button></NavLink>
+      </div>
     );
   }
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <nav>
+      <NavLink exact to="/"><button className='home'><i className='fa-solid fa-house' /></button></NavLink>
+      {isLoaded && sessionLinks}
+    </nav>
   )
 }
 export default Navigation;
