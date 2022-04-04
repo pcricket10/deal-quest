@@ -10,21 +10,53 @@ module.exports = {
       Example:
       */
     return queryInterface.bulkInsert('Users', [
+
+      {
+        email: 'ash@pallettown.com',
+        username: 'AshKetchum',
+        hashedPassword: bcrypt.hashSync('IChooseYou')
+      },
+      {
+        email: 'link@hyrule.com',
+        username: 'Link',
+        hashedPassword: bcrypt.hashSync('GanonSux')
+      },
+      {
+        email: 'mario@mushroomkingdom.com',
+        username: 'MarioMario',
+        hashedPassword: bcrypt.hashSync('It\'s a me')
+      },
+      {
+        email: 'cloud@midgar.com',
+        username: 'CloudStrife',
+        hashedPassword: bcrypt.hashSync('I<3Aerith')
+      },
+      {
+        email: 'gary@pallettown.com',
+        username: 'GaryOak',
+        hashedPassword: bcrypt.hashSync('SmellYaL8r')
+      },
+      {
+        email: 'ganon@hyrule.com',
+        username: 'Ganondorf',
+        hashedPassword: bcrypt.hashSync('LinkSux')
+      },
+      {
+        email: 'bowser@mushroomkingdom.com',
+        username: 'Bowser',
+        hashedPassword: bcrypt.hashSync('MarioSux')
+      },
+      {
+        email: 'sephiroth@midgar.com',
+        username: 'Sephiroth',
+        hashedPassword: bcrypt.hashSync('OneWingedAngel12')
+      },
       {
         email: 'demo@user.io',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password')
       },
-      {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
-      },
-      {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
-      },
+
 
     ], {});
   },
