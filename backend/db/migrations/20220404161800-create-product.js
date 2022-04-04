@@ -30,12 +30,11 @@ module.exports = {
       },
       currencyId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         onDelete: 'cascade',
         references: {
           model: 'Currencies'
         }
-
 
       },
       createdAt: {
