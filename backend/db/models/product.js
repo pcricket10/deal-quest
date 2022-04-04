@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   }, {});
+  Product.allProducts = async function () { return await Product.findAll() }
   Product.associate = function (models) {
     Product.belongsTo(models.User, { foreignKey: 'userId' })
     Product.belongsTo(models.Currency, { foreignKey: 'currencyId' })
