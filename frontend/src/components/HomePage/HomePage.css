@@ -1,0 +1,12 @@
+img.thumbnail {
+  width: 100px;
+  height: 100px
+}
+
+.product {
+  margin: 10px;
+}
+
+.product:hover {
+  background-color: lightgray;
+}
