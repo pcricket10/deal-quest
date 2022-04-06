@@ -21,8 +21,7 @@ router.post('/new', asyncHandler(async (req, res) => {
 
 
   const product = await Product.create(req.body)
-
-  return res.redirect(`${req.baseUrl}/${product.id}`)
+  return res.json({ product })
 }))
 
 router.put('/:id', asyncHandler(async (req, res) => {
