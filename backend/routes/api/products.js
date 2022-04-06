@@ -16,7 +16,7 @@ router.get('/', asyncHandler(async (req, res) => {
   res.json(products)
 }))
 
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/new', asyncHandler(async (req, res) => {
   // productValidations
 
 

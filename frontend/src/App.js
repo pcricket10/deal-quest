@@ -8,7 +8,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import ProductDetails from "./components/ProductDetails";
-import ProductEditForm from "./components/ProductEditForm";
+import EditProductForm from "./components/EditProductForm";
+import NewProductForm from "./components/NewProductForm"
 
 function App() {
   const dispatch = useDispatch();
@@ -28,10 +29,10 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/products/:id/edit">
-            <ProductEditForm />
+            <EditProductForm />
           </Route>
           <Route path="/products/new">
-            <h1>NEW</h1>
+            <NewProductForm />
           </Route>
           <Route path="/products/:id">
             <ProductDetails />

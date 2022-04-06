@@ -8,26 +8,19 @@ import "./ProductDetails.css"
 const ProductDetails = () => {
 
   const { id } = useParams();
-  console.log(id, "34334343234")
 
   let product = useSelector(state => state.productState.entries).find(obj => obj.id === Number(id));
 
   // let obj = product.find(obj => obj.id === 4);
   // product = product.find(obj => obj.id === id)
-  console.log("====================")
-  console.log(product);
-  console.log("====================")
   const [editProductForm, setEditProductForm] = useState(false);
   const [editid, setEditid] = useState(null)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchOneProduct(id));
-    console.log(id, 'asdfs')
   }, [id])
 
-  useEffect(() => {
-    console.log(product, "DFDSFSERSRE")
-  }, [product])
+
   if (!product) return null
 
 
