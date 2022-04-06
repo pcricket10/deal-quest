@@ -6,6 +6,7 @@ const asyncHandler = require('express-async-handler');
 
 
 const { Product, User, Currency } = require('../../db/models');
+
 router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
   const products = await Product.findByPk(id, { include: [User, Currency] });
@@ -48,11 +49,6 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 
 
-
-router.get('/:id', asyncHandler(async (req, res) => {
-  const product = await Product.findByPk(req.params.id)
-  res.json(product)
-}))
 
 
 
