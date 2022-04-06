@@ -13,9 +13,9 @@ import NewProductForm from "./components/NewProductForm"
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoaded, seteIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => seteIsLoaded(true))
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
   }, [dispatch])
   return (
     <>

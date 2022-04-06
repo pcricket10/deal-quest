@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
+import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
 import { createProduct } from '../../store/products';
 import { fetchCurrencies } from '../../store/currencies';
 import "./NewProductForm.css"
 
 const NewProductForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const sessionUser = useSelector(state => state.session.user)
   const currencies = useSelector(state => state.currencyState.entries)
@@ -19,22 +20,29 @@ const NewProductForm = () => {
   const [name, setName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [price, setPrice] = useState(0);
-  const [currencyId, setCurrencyId] = useState(0);
+  const [currencyId, setCurrencyId] = useState(1);
   const [errors, setErrors] = useState([]);
-
   useEffect(() => {
     dispatch(fetchCurrencies());
   }, [dispatch])
+
+
   // setUserId(sessionUser.id)
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrors([]);
-    return dispatch(createProduct({ userId: sessionUser.id, name, imgUrl, price, currencyId }))
+    const createdProduct = await dispatch(createProduct({ userId: sessionUser.id, name, imgUrl, price, currencyId }))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
+    if (createdProduct) {
+
+      history.push(`/products/${createdProduct.product.id}`)
+    }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 

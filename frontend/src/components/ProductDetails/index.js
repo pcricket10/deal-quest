@@ -33,6 +33,7 @@ const ProductDetails = () => {
       <img src={product.imgUrl}></img>
       <p>{product.price} {product.Currency.unit}</p>
       <p>{product.User.username}</p>
+      <NavLink to={`/products/${product.id}/edit`}><button>edit</button></NavLink>
     </>
 
 

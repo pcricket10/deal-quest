@@ -7,7 +7,7 @@ import "./HomePage.css"
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.productState.entries)
+  const products = useSelector(state => state.productState.products)
 
 
   useEffect(() => {

@@ -7,7 +7,7 @@ const ADD_PRODUCT = 'products/addProduct'
 export const loadProducts = products => {
   return {
     type: LOAD_PRODUCTS,
-    products
+    products //payload
   }
 }
 export const addProduct = product => {
@@ -47,14 +47,33 @@ export const createProduct = newProduct => async (dispatch) => {
   return product;
 
 }
-const initialState = { entries: [], isLoading: true };
 
-const productReducer = (state = initialState, action) => {
+export const editProduct = editedProduct => async (dispatch) => {
+  const response = await csrfFetch(`/api/products/${editedProduct.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(editProduct)
+  });
+  const product = await response.json();
+  dispatch(addProduct(product));
+  return product;
+}
+
+const productReducer = (state = {}, action) => {
+  const newState = {}
+
   switch (action.type) {
+
     case LOAD_PRODUCTS:
-      return { ...state, entries: [...action.products] };
+      const loadedProducts = {}
+      action.products.forEach(product => loadedProducts[product.id] = product);
+      return { ...state, ...loadProducts };
     case ADD_PRODUCT:
-      return { ...state, entries: [...state.entries, action.product] };
+      // const newState = {...state}
+      // newState[action.product.id] = action.product
+      return { ...state, [action.product.id]: action.product }
     default:
       return state;
   }
