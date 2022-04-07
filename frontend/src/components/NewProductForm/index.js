@@ -4,10 +4,10 @@ import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-r
 import { createProduct } from '../../store/products';
 import { fetchCurrencies } from '../../store/currencies';
 import "./NewProductForm.css"
-// import product from '../../../../backend/db/models/product';
 
 const NewProductForm = () => {
   const { id } = useParams();
+
   const dispatch = useDispatch();
   const history = useHistory();
 

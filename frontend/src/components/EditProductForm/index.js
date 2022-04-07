@@ -19,8 +19,6 @@ const EditProductForm = () => {
 
   // console.log(sessionUser, "@@@@@@@@@@@@@@@@@@@@3");
 
-
-
   const [name, setName] = useState(product.name);
   const [imgUrl, setImgUrl] = useState(product.imgUrl);
   const [price, setPrice] = useState(product.price);
@@ -90,7 +88,9 @@ const EditProductForm = () => {
     <label>
       Currency
       <select onChange={e => setCurrencyId(e.target.value)}>
+        <option value=""></option>
         {
+
           currencies && Object.values(currencies).map(({ id, unit }) => (
             <option value={id} key={id}>{unit}</option>
           ))

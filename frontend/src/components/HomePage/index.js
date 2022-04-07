@@ -8,10 +8,14 @@ import "./HomePage.css"
 const HomePage = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.productState)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts())
+      .then(() => setIsLoaded(true))
   }, [dispatch])
+
+  if (!isLoaded) return null;
   return (
     <div>
       <h1>Deal Quest:</h1>
@@ -22,8 +26,8 @@ const HomePage = () => {
             <NavLink to={`/products/${id}`} key={id}>
               <div className="product">
                 <img className="thumbnail" src={imgUrl} alt={`${name} image`} />{name}
-                <p>{User.username}</p>
-                <p>Price: {price} {Currency.unit}</p>
+                <p>{User?.username}</p>
+                <p>Price: {price} {Currency?.unit}</p>
               </div>
             </NavLink>
           ))

@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
-import { editProduct, fetchOneProduct } from '../../store/products';
+import { editProduct, fetchOneProduct, deleteProduct } from '../../store/products';
 import { fetchCurrencies } from '../../store/currencies';
 import "./DeletePage.css"
 
 const DeletePage = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user)
+  // useEffect(() => {
+  //   dispatch(deleteProduct(id));
+  // }, [id])
 
   return (
     <div>

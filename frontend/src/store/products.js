@@ -42,9 +42,9 @@ export const createProduct = newProduct => async (dispatch) => {
     },
     body: JSON.stringify(newProduct)
   });
-  const product = await response.json();
+  const { product } = await response.json();
   dispatch(addProduct(product));
-  return product;
+  // return product;
 
 }
 
@@ -63,6 +63,16 @@ export const editProduct = editedProduct => async (dispatch) => {
   return editedProduct.id;
 }
 
+export const deleteProduct = id => async (dispatch) => {
+  const response = await csrfFetch(`/api/products/${id}/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  return null;
+}
+
 const productReducer = (state = {}, action) => {
   const newState = {}
 
@@ -76,9 +86,18 @@ const productReducer = (state = {}, action) => {
     case ADD_PRODUCT:
       // const newState = {...state}
       // newState[action.product.id] = action.product
-      const addedProduct = action.product
-      console.log(addedProduct, "ADDEDPRODUCTS!")
-      return { ...state, addedProduct }
+      // const addedProduct = action.product
+      // console.log(addedProduct, "ADDEDPRODUCTS!")
+      // return { ...state, addedProduct }
+      const newState = { ...state };
+      console.log(action.product, "ACTION PRODUCT");
+
+      newState[action.product.id] = action.product
+      console.log(newState, "NEW STATE!!!!")
+      return newState;
+
+
+
     default:
       return state;
   }
