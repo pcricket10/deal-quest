@@ -19,8 +19,8 @@ const HomePage = () => {
       <div id="products">
         {
           products && Object.values(products).map(({ id, userId, name, imgUrl, price, Currency, User }) => (
-            <NavLink to={`/products/${id}`}>
-              <div key={id} className="product">
+            <NavLink to={`/products/${id}`} key={id}>
+              <div className="product">
                 <img className="thumbnail" src={imgUrl} alt={`${name} image`} />{name}
                 <p>{User.username}</p>
                 <p>Price: {price} {Currency.unit}</p>

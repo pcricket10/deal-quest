@@ -49,8 +49,8 @@ export const createProduct = newProduct => async (dispatch) => {
 }
 
 export const editProduct = editedProduct => async (dispatch) => {
-  console.log(editedProduct.id, "#$#$#$@#$@#$")
-  const response = await csrfFetch(`/api/products/${editedProduct.id}`, {
+  console.log(editedProduct.id, "editedProduct.id")
+  const response = await csrfFetch(`/api/products/${editedProduct.id}/edit`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -59,7 +59,8 @@ export const editProduct = editedProduct => async (dispatch) => {
   });
   const product = await response.json();
   dispatch(addProduct(product));
-  return product;
+  console.log(product, "product")
+  return editedProduct.id;
 }
 
 const productReducer = (state = {}, action) => {

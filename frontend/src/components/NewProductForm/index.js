@@ -4,6 +4,7 @@ import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-r
 import { createProduct } from '../../store/products';
 import { fetchCurrencies } from '../../store/currencies';
 import "./NewProductForm.css"
+// import product from '../../../../backend/db/models/product';
 
 const NewProductForm = () => {
   const { id } = useParams();
@@ -33,9 +34,9 @@ const NewProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const payload = { userId: sessionUser.id, name, imgUrl, price, currencyId }
     setErrors([]);
-    const createdProduct = await dispatch(createProduct({ userId: sessionUser.id, name, imgUrl, price, currencyId }))
+    const createdProduct = await dispatch(createProduct(payload))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

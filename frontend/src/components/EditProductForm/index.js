@@ -17,7 +17,7 @@ const EditProductForm = () => {
 
 
 
-  console.log(sessionUser);
+  // console.log(sessionUser, "@@@@@@@@@@@@@@@@@@@@3");
 
 
 
@@ -38,15 +38,18 @@ const EditProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = { ...product, userId: sessionUser.id, name, imgUrl, price, currencyId, User: sessionUser }
+    console.log(payload, "PAYLOAD")
 
     setErrors([]);
-    const editedProductId = await dispatch(editProduct({ id: product.id, userId: sessionUser.id, name, imgUrl, price, currencyId }))
+    const editedProductId = await dispatch(editProduct(payload))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
     if (editedProductId) {
       console.log(editedProductId, "[][][][][][][]")
+
       history.push(`/products/${editedProductId}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);

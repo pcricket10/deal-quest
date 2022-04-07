@@ -10,6 +10,7 @@ import HomePage from "./components/HomePage";
 import ProductDetails from "./components/ProductDetails";
 import EditProductForm from "./components/EditProductForm";
 import NewProductForm from "./components/NewProductForm"
+import DeletePage from "./components/DeletePage"
 
 function App() {
   const dispatch = useDispatch();
@@ -22,20 +23,23 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/products/:id/edit">
+          <Route exact path="/products/:id/edit">
             <EditProductForm />
           </Route>
-          <Route path="/products/new">
+          <Route exact path="/products/new">
             <NewProductForm />
           </Route>
-          <Route path="/products/:id">
+          <Route exact path="/products/:id">
             <ProductDetails />
+          </Route>
+          <Route exact path="/products/:id/delete">
+            <DeletePage />
           </Route>
           <Route exact path="/">
             <HomePage />
