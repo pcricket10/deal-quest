@@ -71,11 +71,14 @@ const productReducer = (state = {}, action) => {
     case LOAD_PRODUCTS:
       const loadedProducts = {}
       action.products.forEach(product => loadedProducts[product.id] = product);
+      console.log(loadedProducts, "LOADEDPRODUCTS!")
       return { ...state, ...loadedProducts };
     case ADD_PRODUCT:
       // const newState = {...state}
       // newState[action.product.id] = action.product
-      return { ...state, [action.product.id]: action.product }
+      const addedProduct = action.product
+      console.log(addedProduct, "ADDEDPRODUCTS!")
+      return { ...state, addedProduct }
     default:
       return state;
   }
