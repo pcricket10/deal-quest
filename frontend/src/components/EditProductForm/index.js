@@ -13,6 +13,8 @@ const EditProductForm = () => {
 
   const sessionUser = useSelector(state => state.session.user)
   const currencies = useSelector(state => state.currencyState)
+  // console.log(currencies, "EREREWERWERWERWERWRW")
+
 
 
   console.log(sessionUser);
@@ -38,14 +40,14 @@ const EditProductForm = () => {
     e.preventDefault();
 
     setErrors([]);
-    const editedProduct = await dispatch(editProduct({ id: product.id, userId: sessionUser.id, name, imgUrl, price, currencyId }))
+    const editedProductId = await dispatch(editProduct({ id: product.id, userId: sessionUser.id, name, imgUrl, price, currencyId }))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
-    if (editedProduct) {
-
-      history.push(`/products/${product.id}`)
+    if (editedProductId) {
+      console.log(editedProductId, "[][][][][][][]")
+      history.push(`/products/${editedProductId}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
@@ -86,14 +88,14 @@ const EditProductForm = () => {
       Currency
       <select onChange={e => setCurrencyId(e.target.value)}>
         {
-          currencies && currencies.map(({ id, unit }) => (
+          currencies && Object.values(currencies).map(({ id, unit }) => (
             <option value={id} key={id}>{unit}</option>
           ))
         }
       </select>
 
     </label>
-    <button type="submit">New</button>
+    <button type="submit">Edit</button>
   </form>
   )
 }

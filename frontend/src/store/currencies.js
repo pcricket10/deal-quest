@@ -1,5 +1,5 @@
 
-const LOAD_CURRENCIES = 'currencies/loadcurrencies'
+const LOAD_CURRENCIES = 'currencies/loadCurrencies'
 
 export const loadCurrencies = currencies => {
   return {
@@ -27,7 +27,7 @@ const currencyReducer = (state = {}, action) => {
     case LOAD_CURRENCIES:
       const loadedCurrencies = {}
       action.currencies.forEach(currency => loadedCurrencies[currency.id] = currency);
-      return { ...state, ...loadCurrencies };
+      return { ...state, ...loadedCurrencies };
     default:
       return state;
   }

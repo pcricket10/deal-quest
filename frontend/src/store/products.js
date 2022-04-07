@@ -49,12 +49,13 @@ export const createProduct = newProduct => async (dispatch) => {
 }
 
 export const editProduct = editedProduct => async (dispatch) => {
+  console.log(editedProduct.id, "#$#$#$@#$@#$")
   const response = await csrfFetch(`/api/products/${editedProduct.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(editProduct)
+    body: JSON.stringify(editedProduct)
   });
   const product = await response.json();
   dispatch(addProduct(product));
@@ -69,7 +70,6 @@ const productReducer = (state = {}, action) => {
     case LOAD_PRODUCTS:
       const loadedProducts = {}
       action.products.forEach(product => loadedProducts[product.id] = product);
-      console.log(loadedProducts, "SDFEWSRSEWSRSERSERERSERF")
       return { ...state, ...loadedProducts };
     case ADD_PRODUCT:
       // const newState = {...state}

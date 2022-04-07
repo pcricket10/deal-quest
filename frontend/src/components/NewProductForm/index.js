@@ -6,11 +6,12 @@ import { fetchCurrencies } from '../../store/currencies';
 import "./NewProductForm.css"
 
 const NewProductForm = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const sessionUser = useSelector(state => state.session.user)
-  const currencies = useSelector(state => state.currencyState.entries)
+  const currencies = useSelector(state => state.currencyState)
 
 
   console.log(sessionUser);
@@ -40,7 +41,7 @@ const NewProductForm = () => {
         if (data && data.errors) setErrors(data.errors);
       });
     if (createdProduct) {
-
+      console.log(createdProduct.product.id, "[][][][][][][]")
       history.push(`/products/${createdProduct.product.id}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -72,7 +73,7 @@ const NewProductForm = () => {
     <label>
       Price
       <input
-        type="text"
+        type="number"
         value={price}
         onChange={e => setPrice(e.target.value)}
         required
@@ -82,7 +83,7 @@ const NewProductForm = () => {
       Currency
       <select onChange={e => setCurrencyId(e.target.value)}>
         {
-          currencies && currencies.map(({ id, unit }) => (
+          currencies && Object.values(currencies).map(({ id, unit }) => (
             <option value={id} key={id}>{unit}</option>
           ))
         }
