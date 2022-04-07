@@ -20,12 +20,14 @@ export const fetchCurrencies = () => async (dispatch) => {
   }
 }
 
-const initialState = { entries: [], isLoading: true };
+// const initialState = { entries: [], isLoading: true };
 
-const currencyReducer = (state = initialState, action) => {
+const currencyReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_CURRENCIES:
-      return { ...state, entries: [...action.currencies] };
+      const loadedCurrencies = {}
+      action.currencies.forEach(currency => loadedCurrencies[currency.id] = currency);
+      return { ...state, ...loadCurrencies };
     default:
       return state;
   }

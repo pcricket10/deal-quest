@@ -7,8 +7,7 @@ import "./HomePage.css"
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.productState.products)
-
+  const products = useSelector(state => state.productState)
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -19,7 +18,7 @@ const HomePage = () => {
       <h3>Your one-stop shop for Weapons, items, and power-ups!</h3>
       <div id="products">
         {
-          products && products.map(({ id, userId, name, imgUrl, price, Currency, User }) => (
+          products && Object.values(products).map(({ id, userId, name, imgUrl, price, Currency, User }) => (
             <NavLink to={`/products/${id}`}>
               <div key={id} className="product">
                 <img className="thumbnail" src={imgUrl} alt={`${name} image`} />{name}
