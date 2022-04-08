@@ -24,6 +24,10 @@ module.exports = {
           model: 'Products'
         }
       },
+      title: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       content: {
         allowNull: false,
         type: Sequelize.TEXT
