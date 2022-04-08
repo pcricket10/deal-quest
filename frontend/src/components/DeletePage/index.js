@@ -10,18 +10,31 @@ const DeletePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user)
+
+
   // useEffect(() => {
   //   dispatch(deleteProduct(id));
   // }, [id])
 
-  return (
-    <div>
-      <h2> welcome to delete page!!</h2>
-      <h1>Are you sure you want to delete "product"? </h1>
-      <button>Yes</button>
-      <button>NO</button>
-    </div>
-  )
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const deletedProduct = dispatch(deleteProduct(id));
 
+    if (deletedProduct) history.push("/")
+  }
+
+  return (
+
+    <form onSubmit={handleSubmit}>
+      <div>
+        <h2> welcome to delete page!!</h2>
+        <h1>Are you sure you want to delete "product"? </h1>
+
+        <button type="submit">Yes</button>
+      </div>
+    </form>
+
+  )
+
+}
 export default DeletePage;

@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf"
 
 const LOAD_PRODUCTS = 'products/loadProducts'
 const ADD_PRODUCT = 'products/addProduct'
+const DELETE_PRODUCT = 'products/deleteProduct'
 
 export const loadProducts = products => {
   return {
@@ -16,7 +17,6 @@ export const addProduct = product => {
     product
   }
 }
-
 export const fetchProducts = () => async (dispatch) => {
   const response = await fetch('/api/products');
   if (response.ok) {
@@ -44,7 +44,7 @@ export const createProduct = newProduct => async (dispatch) => {
   });
   const { product } = await response.json();
   dispatch(addProduct(product));
-  // return product;
+  return product;
 
 }
 
@@ -70,6 +70,8 @@ export const deleteProduct = id => async (dispatch) => {
       "Content-Type": "application/json"
     }
   })
+  const product = await response.json()
+  dispatch(deleteProduct(product))
   return null;
 }
 
@@ -90,10 +92,10 @@ const productReducer = (state = {}, action) => {
       // console.log(addedProduct, "ADDEDPRODUCTS!")
       // return { ...state, addedProduct }
       const newState = { ...state };
-      console.log(action.product, "ACTION PRODUCT");
+      // console.log(action.product, "ACTION PRODUCT");
 
       newState[action.product.id] = action.product
-      console.log(newState, "NEW STATE!!!!")
+      // console.log(newState, "NEW STATE!!!!")
       return newState;
 
 

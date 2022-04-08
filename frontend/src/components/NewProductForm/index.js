@@ -15,7 +15,7 @@ const NewProductForm = () => {
   const currencies = useSelector(state => state.currencyState)
 
 
-  console.log(sessionUser);
+  // console.log(sessionUser);
 
 
 
@@ -37,12 +37,12 @@ const NewProductForm = () => {
     const payload = { userId: sessionUser.id, name, imgUrl, price, currencyId }
     setErrors([]);
     const createdProduct = await dispatch(createProduct(payload))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+    // .catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data && data.errors) setErrors(data.errors);
+    // });
     if (createdProduct) {
-      console.log(createdProduct.product.id, "[][][][][][][]")
+      console.log(createdProduct, "[][][][][][][]")
       history.push(`/products/${createdProduct.product.id}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
