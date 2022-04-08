@@ -4,12 +4,12 @@ const router = express.Router();
 const asyncHandler = require('express-async-handler');
 // const productValidations = require('../../utils/validation')
 
-const { Product, User, Currency } = require('../../db/models');
+const { Product, User, Currency, Review } = require('../../db/models');
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = req.params.id;
   // console.log(id, "AFTER!#################################################################################################################################################")
-  const products = await Product.findByPk(id, { include: [User, Currency] });
+  const products = await Product.findByPk(id, { include: [User, Currency, { model: Review, include: [User] }] });
   // console.log(products, "#################")
   res.json(products)
 }))
@@ -20,7 +20,7 @@ router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
   const product = await Product.update({ ...req.body }, {
     where: { id }
   })
-    .then(() => Product.findByPk(id, { include: [User, Currency] }));
+    .then(() => Product.findByPk(id, { include: [User, Currency, Review] }));
 
   // console.log(product, "PUT PRODUCT!!!!!!")
 
@@ -36,6 +36,16 @@ router.delete('/:id/delete', asyncHandler(async (req, res) => {
 
 }))
 
+// router.get('/:id/reviews', asyncHandler(async (req, res) => {
+//   const id = req.params.id;
+
+//   const reviews = Review.findAll({ where: { productId: id } })
+
+//   // console.log(reviews, "REVIEWS")
+//   res.json(reviews)
+
+// }))
+
 
 router.post('/new', asyncHandler(async (req, res) => {
   // productValidation
@@ -46,7 +56,7 @@ router.post('/new', asyncHandler(async (req, res) => {
   // .then(() => console.log(product));
   // .then(() => Product.findAll({ include: [User, Currency] }))
   // const stuff = await Product.findByPk(product.id, { include: [User, Currency] })
-  console.log(stuff, "NEW PRODUCT")
+  // console.log(stuff, "NEW PRODUCT")
   return res.json(stuff)
   // return res.redirect('/')
 }))
