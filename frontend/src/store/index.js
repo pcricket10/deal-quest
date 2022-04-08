@@ -3,11 +3,13 @@ import sessionReducer from "./session";
 import thunk from "redux-thunk";
 import productReducer from "./products"
 import currencyReducer from "./currencies";
+import reviewReducer from "./reviews";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   productState: productReducer,
-  currencyState: currencyReducer
+  currencyState: currencyReducer,
+  reviewState: reviewReducer
 });
 
 let enhancer;

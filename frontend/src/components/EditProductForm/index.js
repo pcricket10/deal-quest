@@ -13,11 +13,9 @@ const EditProductForm = () => {
 
   const sessionUser = useSelector(state => state.session.user)
   const currencies = useSelector(state => state.currencyState)
-  // console.log(currencies, "EREREWERWERWERWERWRW")
 
 
 
-  // console.log(sessionUser, "@@@@@@@@@@@@@@@@@@@@3");
 
   const [name, setName] = useState(product.name);
   const [imgUrl, setImgUrl] = useState(product.imgUrl);
@@ -28,16 +26,12 @@ const EditProductForm = () => {
     dispatch(fetchCurrencies());
   }, [dispatch])
 
-  useEffect(() => {
-    dispatch(fetchOneProduct(id));
-  }, [id])
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = { ...product, userId: sessionUser.id, name, imgUrl, price, currencyId, User: sessionUser }
-    console.log(payload, "PAYLOAD")
 
     setErrors([]);
     const editedProductId = await dispatch(editProduct(payload))
@@ -46,7 +40,6 @@ const EditProductForm = () => {
         if (data && data.errors) setErrors(data.errors);
       });
     if (editedProductId) {
-      console.log(editedProductId, "[][][][][][][]")
 
       history.push(`/products/${editedProductId}`)
     }

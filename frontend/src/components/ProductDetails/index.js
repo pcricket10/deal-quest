@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   let product = useSelector(state => state.productState[+id]);
-  console.log(sessionUser.id, "vs", product.userId)
+
 
   // let obj = product.find(obj => obj.id === 4);
   // product = product.find(obj => obj.id === id)
@@ -26,7 +26,7 @@ const ProductDetails = () => {
   let editAndDelete;
   // let form;
   let theForm;
-  if (sessionUser.id === product.userId) {
+  if (product && sessionUser.id === product.userId) {
     editAndDelete = (
       <div className='edit-and-delete'>
         {/* <NavLink to={`/products/${product.id}/edit`}><button>edit</button></NavLink>
@@ -87,10 +87,10 @@ const ProductDetails = () => {
   return product && (
     <>
       <h1>hello there</h1>
-      <h2>{product.name}</h2>
-      <img src={product.imgUrl}></img>
-      <p>{product.price} {product.Currency.unit}</p>
-      <p>{product.User.username}</p>
+      <h2>{product?.name}</h2>
+      <img src={product?.imgUrl}></img>
+      <p>{product?.price} {product?.Currency.unit}</p>
+      <p>{product?.User?.username}</p>
       {editAndDelete}
       {theForm}
 

@@ -6,7 +6,6 @@ import { fetchCurrencies } from '../../store/currencies';
 import "./NewProductForm.css"
 
 const NewProductForm = () => {
-  const { id } = useParams();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,16 +33,17 @@ const NewProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { userId: sessionUser.id, name, imgUrl, price, currencyId }
+    const payload = { userId: sessionUser.id, name, imgUrl, price, currencyId, User: sessionUser }
     setErrors([]);
     const createdProduct = await dispatch(createProduct(payload))
     // .catch(async (res) => {
     //   const data = await res.json();
     //   if (data && data.errors) setErrors(data.errors);
     // });
+
     if (createdProduct) {
       console.log(createdProduct, "[][][][][][][]")
-      history.push(`/products/${createdProduct.product.id}`)
+      history.push(`/products/${createdProduct}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };

@@ -42,9 +42,10 @@ export const createProduct = newProduct => async (dispatch) => {
     },
     body: JSON.stringify(newProduct)
   });
-  const { product } = await response.json();
-  dispatch(addProduct(product));
-  return product;
+  const Product = await response.json();
+  console.log("PRODUCT RESPONSE", Product)
+  dispatch(addProduct(Product));
+  return Product.id;
 
 }
 
@@ -72,7 +73,7 @@ export const deleteProduct = id => async (dispatch) => {
   })
   const product = await response.json()
   dispatch(deleteProduct(product))
-  return null;
+  // return null;
 }
 
 const productReducer = (state = {}, action) => {
@@ -83,7 +84,7 @@ const productReducer = (state = {}, action) => {
     case LOAD_PRODUCTS:
       const loadedProducts = {}
       action.products.forEach(product => loadedProducts[product.id] = product);
-      console.log(loadedProducts, "LOADEDPRODUCTS!")
+      // console.log(loadedProducts, "LOADEDPRODUCTS!")
       return { ...state, ...loadedProducts };
     case ADD_PRODUCT:
       // const newState = {...state}
@@ -92,10 +93,18 @@ const productReducer = (state = {}, action) => {
       // console.log(addedProduct, "ADDEDPRODUCTS!")
       // return { ...state, addedProduct }
       const newState = { ...state };
-      // console.log(action.product, "ACTION PRODUCT");
+      console.log(action, "ACTION PRODUCT ACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCT");
 
       newState[action.product.id] = action.product
       // console.log(newState, "NEW STATE!!!!")
+      return newState;
+
+    case DELETE_PRODUCT:
+
+      newState = { ...state };
+      let newProductState = { ...state.productState }
+      delete newProductState[action.id]
+      newState.productState = newProductState
       return newState;
 
 

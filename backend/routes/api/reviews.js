@@ -9,7 +9,7 @@ const { Review, User, Currency } = require('../../db/models');
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = req.params.id;
   // console.log(id, "AFTER!#################################################################################################################################################")
-  const reviews = await Review.findByPk(id, { include: [User, Currency] });
+  const reviews = await Review.findByPk(id, { include: [User] });
   res.json(reviews)
 }))
 
@@ -18,7 +18,7 @@ router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
   const id = req.params.id;
   const review = await Review.update({ ...req.body }, {
     where: { id }
-  }).then(() => Review.findByPk(id, { include: [User, Currency] }));
+  }).then(() => Review.findByPk(id, { include: [User] }));
 
   console.log(review, "PRODUCT API!")
   return res.json(review)
@@ -32,7 +32,8 @@ router.post('/new', asyncHandler(async (req, res) => {
 }))
 
 router.get('/', asyncHandler(async (req, res) => {
-  const reviews = await Review.findAll({ include: [User, Currency] });
+  const reviews = await Review.findAll({ include: [User] });
+  // console.log(reviews, '#$#$#$')
   res.json(reviews)
 }))
 

@@ -32,7 +32,7 @@ router.delete('/:id/delete', asyncHandler(async (req, res) => {
   const product = await Product.destroy({
     where: { id }
   })
-  return res.json(product)
+  // return res.json(product)
 
 }))
 
@@ -46,6 +46,7 @@ router.post('/new', asyncHandler(async (req, res) => {
   // .then(() => console.log(product));
   // .then(() => Product.findAll({ include: [User, Currency] }))
   // const stuff = await Product.findByPk(product.id, { include: [User, Currency] })
+  console.log(stuff, "NEW PRODUCT")
   return res.json(stuff)
   // return res.redirect('/')
 }))
