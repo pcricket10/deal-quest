@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../../store/products';
-import DeletePage from '../DeletePage';
+import DeleteProduct from '../DeleteProduct';
 import EditProductForm from '../EditProductForm';
-import ProductReviews from '../ProductReviews'
-import "./ProductDetails.css"
+import ProductReviews from '../ProductReviews';
+import "./ProductDetails.css";
+
 const ProductDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
 
@@ -22,11 +23,10 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
 
-  // let form;
+
   let editAndDelete;
-  // let form;
   let theForm;
-  if (product && sessionUser.id === product.userId) {
+  if (sessionUser && product && sessionUser.id === product.userId) {
     editAndDelete = (
       <div className='edit-and-delete'>
         {/* <NavLink to={`/products/${product.id}/edit`}><button>edit</button></NavLink>
@@ -36,8 +36,8 @@ const ProductDetails = () => {
       </div>
 
     )
-
   }
+
 
   if (edit) {
 
@@ -50,51 +50,31 @@ const ProductDetails = () => {
   else if (remove) {
 
     theForm = (<div className='delete-form'>
-      <DeletePage />
+      <DeleteProduct />
     </div>)
   }
 
-
-
-  // if (edit) {
-  //   setRemove(null);
-  //   theForm = (
-  //     <div className='edit-form'>
-  //       <EditProductForm />
-  //     </div>
-  //   )
-  // }
-  // else if (remove) {
-  //   setEdit(null)
-  //   theForm = (<div className='delete-form'>
-  //     <DeletePage />
-  //   </div>)
-  // }
-  // theForm = (<h1>hahaha</h1>)
 
   useEffect(() => {
     dispatch(fetchOneProduct(id));
   }, [id])
 
 
-
-
   if (!product) return null
-
 
   let content = null;
 
   return product && (
     <>
-      <h1>hello there</h1>
-      <h2>{product?.name}</h2>
+      <h1>{product?.name}</h1>
       <img src={product?.imgUrl}></img>
       <p>{product?.price} {product?.Currency.unit}</p>
       <p>{product?.User?.username}</p>
       {editAndDelete}
-      {theForm}
-
-      <ProductReviews />
+      <div id="product-reviews">
+        {theForm}
+        <ProductReviews product={product} />
+      </div>
 
     </>
 

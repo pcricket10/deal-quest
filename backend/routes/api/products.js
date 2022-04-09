@@ -6,13 +6,7 @@ const asyncHandler = require('express-async-handler');
 
 const { Product, User, Currency, Review } = require('../../db/models');
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-  const id = req.params.id;
-  // console.log(id, "AFTER!#################################################################################################################################################")
-  const products = await Product.findByPk(id, { include: [User, Currency, { model: Review, include: [User] }] });
-  // console.log(products, "#################")
-  res.json(products)
-}))
+
 
 router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
 
@@ -67,7 +61,13 @@ router.get('/', asyncHandler(async (req, res) => {
 }))
 
 
-
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  // console.log(id, "AFTER!#################################################################################################################################################")
+  const products = await Product.findByPk(id, { include: [User, Currency, { model: Review, include: [User] }] });
+  // console.log(products, "#################")
+  res.json(products)
+}))
 
 
 

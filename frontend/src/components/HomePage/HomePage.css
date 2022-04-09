@@ -1,10 +1,36 @@
 img.thumbnail {
   width: 100px;
-  height: 100px
+  height: 100px;
+  justify-self: flex-start;
+  margin-right: 20px;
 }
 
 .product {
-  margin: 10px;
+  margin: 5px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.product-user-img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* .product-user {
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+} */
+
+.username {
+  font-size: 12pt;
+}
+
+.price {
+  justify-self: flex-end;
 }
 
 .product:hover {

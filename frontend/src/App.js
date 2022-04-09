@@ -10,7 +10,7 @@ import HomePage from "./components/HomePage";
 import ProductDetails from "./components/ProductDetails";
 import EditProductForm from "./components/EditProductForm";
 import NewProductForm from "./components/NewProductForm"
-import DeletePage from "./components/DeletePage"
+import DeleteProduct from "./components/DeleteProduct"
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function App() {
             <ProductDetails />
           </Route>
           <Route exact path="/products/:id/delete">
-            <DeletePage />
+            <DeleteProduct />
           </Route>
           <Route exact path="/">
             <HomePage />

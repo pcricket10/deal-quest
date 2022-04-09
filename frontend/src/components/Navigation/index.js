@@ -17,14 +17,14 @@ const Navigation = ({ isLoaded }) => {
   } else {
     sessionLinks = (
       <div className='login-signup'>
-        <NavLink to="/login"><button className="login">Log In</button></NavLink>
-        <NavLink to="/signup"><button className="signup">Sign Up</button></NavLink>
+        <NavLink to="/login"><button className="nav-button login">Log In</button></NavLink>
+        <NavLink to="/signup"><button className="nav-button signup">Sign Up</button></NavLink>
       </div>
     );
   }
   return (
     <nav>
-      <NavLink exact to="/"><button className='home'><i className='fa-solid fa-house' /></button></NavLink>
+      <NavLink exact to="/"><button className='nav-button home'><i className='fa-solid fa-house' /></button></NavLink>
       {isLoaded && sessionLinks}
     </nav>
   )

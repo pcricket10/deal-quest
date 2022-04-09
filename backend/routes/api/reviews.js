@@ -46,7 +46,14 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 }))
 
 
+router.delete('/:id/delete', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const review = await Review.destroy({
+    where: { id }
+  })
+  // return res.json(product)
 
+}))
 
 
 

@@ -10,7 +10,7 @@ const EditProductForm = () => {
   let product = useSelector(state => state.productState[+id])
   const dispatch = useDispatch();
   const history = useHistory();
-
+  console.log("PRODUCT STSTE!", product)
   const sessionUser = useSelector(state => state.session.user)
   const currencies = useSelector(state => state.currencyState)
 

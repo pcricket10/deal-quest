@@ -1,11 +1,11 @@
 // frontend/src/store
 import { csrfFetch } from "./csrf"
 
-const LOAD_REVIEWS = 'reviews/loadreviews'
+const LOAD_REVIEWS = 'reviews/loadReviews'
 const ADD_REVIEW = 'reviews/addReview'
 const DELETE_REVIEW = 'reviews/deleteReview'
 
-export const loadreviews = reviews => {
+export const loadReviews = reviews => {
   return {
     type: LOAD_REVIEWS,
     reviews //payload
@@ -17,11 +17,13 @@ export const addReview = review => {
     review
   }
 }
-export const fetchReviews = () => async (dispatch) => {
-  const response = await fetch('/api/reviews');
+export const fetchOneProductReviews = (product) => async (dispatch) => {
+  console.log(product, "PRODUCT!")
+  const response = await fetch(`/api/products/${product.id}/reviews`);
+  console.log("RESPONSE", response, "RESPONSE!")
   if (response.ok) {
     const reviews = await response.json();
-    dispatch(loadreviews(reviews));
+    dispatch(loadReviews(reviews));
     return reviews;
   }
 }
@@ -42,14 +44,14 @@ export const createReview = newReview => async (dispatch) => {
     },
     body: JSON.stringify(newReview)
   });
-  const { review } = await response.json();
+  const review = await response.json();
   dispatch(addReview(review));
-  return review;
+  return review.id;
 
 }
 
 export const editReview = editedReview => async (dispatch) => {
-  console.log(editedReview.id, "editedReview.id")
+  // console.log(editedReview.id, "editedReview.id")
   const response = await csrfFetch(`/api/reviews/${editedReview.id}/edit`, {
     method: "PUT",
     headers: {
@@ -59,7 +61,7 @@ export const editReview = editedReview => async (dispatch) => {
   });
   const review = await response.json();
   dispatch(addReview(review));
-  console.log(review, "review")
+  // console.log(review, "review")
   return editedReview.id;
 }
 
@@ -76,14 +78,15 @@ export const deleteReview = id => async (dispatch) => {
 }
 
 const reviewReducer = (state = {}, action) => {
-  const newState = {}
+  let newState = {}
 
   switch (action.type) {
 
     case LOAD_REVIEWS:
       const loadedReviews = {}
+      console.log(action, "action reviewes!!!")
       action.reviews.forEach(review => loadedReviews[review.id] = review);
-      console.log(loadedReviews, "LOADEDreviews!")
+      // console.log(loadedReviews, "LOADEDreviews!")
       return { ...state, ...loadedReviews };
     case ADD_REVIEW:
       // const newState = {...state}
@@ -93,13 +96,17 @@ const reviewReducer = (state = {}, action) => {
       // return { ...state, addedProduct }
       newState = { ...state };
       // console.log(action.product, "ACTION PRODUCT");
+      console.log(action, "ACTION PRODUCT ACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCT");
 
       newState[action.review.id] = action.review
       // console.log(newState, "NEW STATE!!!!")
       return newState;
 
     case DELETE_REVIEW:
-      newState = null;
+      newState = { ...state };
+      let newProductState = { ...state.productState }
+      delete newProductState[action.id]
+      newState.productState = newProductState
       return newState;
 
 

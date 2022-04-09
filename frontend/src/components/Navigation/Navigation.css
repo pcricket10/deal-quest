@@ -2,7 +2,7 @@ a,
 ul,
 li {
   list-style-type: none;
-  color: red;
+  color: black;
   text-decoration: none;
   padding: 10px
 }
@@ -17,6 +17,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: lightgray;
+  box-shadow: 0 5px 2px gray;
 }
 
 a {
@@ -29,15 +30,18 @@ a {
   width: 40px;
 }
 
-button {
-  background-color: lightgray;
+.nav-button {
+  background-color: transparent;
   border: 0;
   /* box-shadow: 0 0 1px 2px lightgreen; */
 }
 
-button:hover {
+button:hover,
+li.link:hover {
   background-color: gray;
 }
+
+
 
 
 .profile-button {
