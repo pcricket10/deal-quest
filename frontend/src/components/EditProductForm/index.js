@@ -39,8 +39,8 @@ const EditProductForm = () => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
-    if (editedProductId) {
 
+    if (editedProductId) {
       history.push(`/products/${editedProductId}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -50,7 +50,7 @@ const EditProductForm = () => {
     <ul>
       {errors.map((error, idx) => <li key={idx}>{error}</li>)}
     </ul>
-    <h1>welcome ot product edit!!</h1>
+
     <label>
       Product Name
       <input

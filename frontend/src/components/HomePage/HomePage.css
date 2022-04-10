@@ -35,4 +35,5 @@ img.thumbnail {
 
 .product:hover {
   background-color: lightgray;
+  border-radius: 100px;
 }

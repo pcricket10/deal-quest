@@ -6,12 +6,6 @@ const asyncHandler = require('express-async-handler');
 
 const { Review, User, Product } = require('../../db/models');
 
-// router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-//   const id = req.params.id;
-//   // console.log(id, "AFTER!#################################################################################################################################################")
-//   const reviews = await Review.findByPk(id, { include: [User] });
-//   res.json(reviews)
-// }))
 
 router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
 
@@ -19,9 +13,16 @@ router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
   const review = await Review.update({ ...req.body }, {
     where: { id }
   }).then(() => Review.findByPk(id, { include: [User, Product] }));
-
-  // console.log(review, "PRODUCT API!")
   return res.json(review)
+}))
+
+router.delete('/:id/delete', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const review = await Review.destroy({
+    where: { id }
+  })
+  // return res.json(product)
+
 }))
 
 
@@ -34,26 +35,17 @@ router.post('/new', asyncHandler(async (req, res) => {
 
 router.get('/', asyncHandler(async (req, res) => {
   const reviews = await Review.findAll({ include: [User] });
-  // console.log(reviews, '#$#$#$')
   res.json(reviews)
 }))
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = req.params.id;
-  // console.log(id, "AFTER!#################################################################################################################################################")
-  const reviews = await Review.findByPk(id, { include: [User] });
+  const reviews = await Review.findByPk(id, { include: [User, Product] });
   res.json(reviews)
 }))
 
 
-router.delete('/:id/delete', asyncHandler(async (req, res) => {
-  const id = req.params.id;
-  const review = await Review.destroy({
-    where: { id }
-  })
-  // return res.json(product)
 
-}))
 
 
 

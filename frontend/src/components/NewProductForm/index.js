@@ -42,7 +42,6 @@ const NewProductForm = () => {
     // });
 
     if (createdProduct) {
-      console.log(createdProduct, "[][][][][][][]")
       history.push(`/products/${createdProduct}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);

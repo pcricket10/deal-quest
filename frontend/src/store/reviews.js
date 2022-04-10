@@ -18,9 +18,7 @@ export const addReview = review => {
   }
 }
 export const fetchOneProductReviews = (product) => async (dispatch) => {
-  console.log(product, "PRODUCT!")
   const response = await fetch(`/api/products/${product.id}/reviews`);
-  console.log("RESPONSE", response, "RESPONSE!")
   if (response.ok) {
     const reviews = await response.json();
     dispatch(loadReviews(reviews));
@@ -64,6 +62,7 @@ export const editReview = editedReview => async (dispatch) => {
   // console.log(review, "review")
   return editedReview.id;
 }
+
 
 export const deleteReview = id => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${id}/delete`, {

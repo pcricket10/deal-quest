@@ -10,17 +10,14 @@ import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
-
   const { id } = useParams();
-
   let product = useSelector(state => state.productState[+id]);
-
-
+  const dispatch = useDispatch();
   // let obj = product.find(obj => obj.id === 4);
   // product = product.find(obj => obj.id === id)
+
   const [edit, setEdit] = useState(null);
   const [remove, setRemove] = useState(null);
-  const dispatch = useDispatch();
 
 
 
@@ -37,6 +34,12 @@ const ProductDetails = () => {
 
     )
   }
+
+
+
+
+
+
 
 
   if (edit) {
@@ -62,7 +65,6 @@ const ProductDetails = () => {
 
   if (!product) return null
 
-  let content = null;
 
   return product && (
     <>

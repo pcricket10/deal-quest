@@ -4,29 +4,29 @@ import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-r
 import reviewReducer, { editReview } from '../../store/reviews';
 import "./EditReview.css"
 
-const EditReview = ({ productId }) => {
-  const { id } = useParams();
 
+const EditReview = () => {
+  const { id } = useParams();
+  const product = useSelector(state => state.productState[+id])
   const dispatch = useDispatch();
   const history = useHistory();
-  // console.log(productId, "EROEWROIWUEOIRFW")
-
 
   const sessionUser = useSelector(state => state.session.user)
-  const product = useSelector(state => state.productState[+id])
-  // console.log("product!!!!!!!", product)
   const review = product.Reviews[0];
-  // console.log(review, "REVIEW PRODUCT!!")
 
-  // console.log(sessionUser);
 
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
+  // console.log("product!!!!!!!", product)
+
+  const [title, setTitle] = useState(review.title)
+  const [content, setContent] = useState(review.content)
   const [errors, setErrors] = useState([]);
   // const review =
 
 
   // setUserId(sessionUser.id)
+
+
+
 
 
   const handleSubmit = async (e) => {

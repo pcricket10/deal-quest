@@ -11,6 +11,9 @@ import ProductDetails from "./components/ProductDetails";
 import EditProductForm from "./components/EditProductForm";
 import NewProductForm from "./components/NewProductForm"
 import DeleteProduct from "./components/DeleteProduct"
+import NewReview from "./components/NewReview";
+import EditReview from "./components/EditReview";
+import DeleteReview from "./components/DeleteReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +43,15 @@ function App() {
           </Route>
           <Route exact path="/products/:id/delete">
             <DeleteProduct />
+          </Route>
+          <Route exact path="/reviews/:id/new">
+            <NewReview />
+          </Route>
+          <Route exact path="/reviews/:id/edit">
+            <EditReview />
+          </Route>
+          <Route exact path="/reviews/:id/delete">
+            <DeleteReview />
           </Route>
           <Route exact path="/">
             <HomePage />

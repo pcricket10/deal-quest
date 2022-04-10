@@ -100,8 +100,8 @@ const productReducer = (state = {}, action) => {
       // console.log(newState, "NEW STATE!!!!")
       return newState;
 
-    case DELETE_PRODUCT:
 
+    case DELETE_PRODUCT:
       newState = { ...state };
       let newProductState = { ...state.productState }
       delete newProductState[action.id]
