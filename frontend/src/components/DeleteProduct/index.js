@@ -27,7 +27,7 @@ const DeleteProduct = () => {
 
     <form onSubmit={handleSubmit}>
       <div>
-        <h1>Are you sure you want to delete "product"? </h1>
+        <p>Are you sure you want to delete ? </p>
 
         <button type="submit">Yes</button>
       </div>

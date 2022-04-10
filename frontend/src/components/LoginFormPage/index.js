@@ -26,8 +26,15 @@ const LoginFormPage = () => {
       });
   }
 
+  const demoUser = e => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
+
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <><form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -37,8 +44,7 @@ const LoginFormPage = () => {
           type="text"
           value={credential}
           onChange={e => setCredential(e.target.value)}
-          required
-        />
+          required />
       </label>
       <label>
         Password
@@ -46,11 +52,18 @@ const LoginFormPage = () => {
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          required
-        />
+          required />
       </label>
       <button type="submit">Log In</button>
+
     </form>
+
+
+      <form onSubmit={demoUser}>
+        <input type="hidden" value={credential} onChange={e => setCredential(e.target.value)}></input>
+        <input type="hidden" value={password} onChange={e => setPassword(e.target.value)}></input>
+        <button type="submit">Demo User </button>
+      </form></>
   );
 }
 

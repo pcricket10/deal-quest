@@ -30,16 +30,16 @@ const ProfileButton = ({ user }) => {
   }
   return (
     <>
-      <button className="nav-button profile-button" onClick={openMenu}>
+      <button className=" profile-button" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li className="link"><NavLink to="/products/new"><button className="nav-button">New Product</button></NavLink></li>
-          <li className="link">
-            <button className="nav-button" onClick={logout}>Log Out</button>
+          {/* hehehehehe */}
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><li>{user.email}</li></a>
+          <NavLink to="/products/new"><li className="link">New Product</li></NavLink>
+          <li className="link" onClick={logout}>Log Out
           </li>
         </ul>
 
