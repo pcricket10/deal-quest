@@ -19,8 +19,9 @@ const DeleteProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const deletedProduct = dispatch(deleteProduct(id));
+    history.push("/")
 
-    if (deletedProduct) history.push("/")
+
   }
 
   return (

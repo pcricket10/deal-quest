@@ -26,7 +26,7 @@ const NewReview = ({ productId }) => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const payload = { userId: sessionUser.id, productId, title, content, User: sessionUser }
     setErrors([]);
     const createdReview = await dispatch(createReview(payload))
@@ -37,6 +37,7 @@ const NewReview = ({ productId }) => {
 
     if (createdReview) {
       console.log(product, "[][][]srtwervsrsaerbserbsers[][][][]")
+        ;
       history.push(`/products/${productId}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);

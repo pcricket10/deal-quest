@@ -41,6 +41,7 @@ const EditProductForm = () => {
       });
 
     if (editedProductId) {
+
       history.push(`/products/${editedProductId}`)
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);

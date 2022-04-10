@@ -26,7 +26,7 @@ const DeleteReview = ({ reviewId }) => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const deletedReview = dispatch(deleteReview(reviewId))
     if (deletedReview) history.push(`/products/${id}`)
 
