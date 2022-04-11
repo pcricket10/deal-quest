@@ -49,7 +49,6 @@ export const createReview = newReview => async (dispatch) => {
 }
 
 export const editReview = editedReview => async (dispatch) => {
-  // console.log(editedReview.id, "editedReview.id")
   const response = await csrfFetch(`/api/reviews/${editedReview.id}/edit`, {
     method: "PUT",
     headers: {
@@ -59,7 +58,6 @@ export const editReview = editedReview => async (dispatch) => {
   });
   const review = await response.json();
   dispatch(addReview(review));
-  // console.log(review, "review")
   return editedReview.id;
 }
 
@@ -83,22 +81,16 @@ const reviewReducer = (state = {}, action) => {
 
     case LOAD_REVIEWS:
       const loadedReviews = {}
-      console.log(action, "action reviewes!!!")
       action.reviews.forEach(review => loadedReviews[review.id] = review);
-      // console.log(loadedReviews, "LOADEDreviews!")
       return { ...state, ...loadedReviews };
     case ADD_REVIEW:
       // const newState = {...state}
       // newState[action.product.id] = action.product
       // const addedProduct = action.product
-      // console.log(addedProduct, "ADDEDreviews!")
       // return { ...state, addedProduct }
       newState = { ...state };
-      // console.log(action.product, "ACTION PRODUCT");
-      console.log(action, "ACTION PRODUCT ACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCT");
 
       newState[action.review.id] = action.review
-      // console.log(newState, "NEW STATE!!!!")
       return newState;
 
     case DELETE_REVIEW:

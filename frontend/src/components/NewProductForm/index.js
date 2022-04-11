@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
-import { createProduct } from '../../store/products';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { fetchCurrencies } from '../../store/currencies';
-import "./NewProductForm.css"
+import { createProduct } from '../../store/products';
+import "./NewProductForm.css";
 
 const NewProductForm = () => {
 
@@ -14,7 +14,6 @@ const NewProductForm = () => {
   const currencies = useSelector(state => state.currencyState)
 
 
-  // console.log(sessionUser);
 
 
 

@@ -2,18 +2,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
+import DeleteProduct from "./components/DeleteProduct";
+import DeleteReview from "./components/DeleteReview";
+import EditProductForm from "./components/EditProductForm";
+import EditReview from "./components/EditReview";
+import HomePage from "./components/HomePage";
 import LoginFormPage from "./components/LoginFormPage";
+import Navigation from "./components/Navigation";
+import NewProductForm from "./components/NewProductForm";
+import NewReview from "./components/NewReview";
+import ProductDetails from "./components/ProductDetails";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
-import HomePage from "./components/HomePage";
-import ProductDetails from "./components/ProductDetails";
-import EditProductForm from "./components/EditProductForm";
-import NewProductForm from "./components/NewProductForm"
-import DeleteProduct from "./components/DeleteProduct"
-import NewReview from "./components/NewReview";
-import EditReview from "./components/EditReview";
-import DeleteReview from "./components/DeleteReview";
 
 function App() {
   const dispatch = useDispatch();

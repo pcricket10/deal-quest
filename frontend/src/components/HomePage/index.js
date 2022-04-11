@@ -1,9 +1,9 @@
 //frontend/src/components/HomePage/index.js
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Route, Switch, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { fetchProducts } from '../../store/products';
-import "./HomePage.css"
+import "./HomePage.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();

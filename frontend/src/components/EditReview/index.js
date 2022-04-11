@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
-import reviewReducer, { editReview } from '../../store/reviews';
-import "./EditReview.css"
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { editReview } from '../../store/reviews';
+import "./EditReview.css";
 
 
 const EditReview = () => {
@@ -15,7 +15,6 @@ const EditReview = () => {
   const review = product.Reviews[0];
 
 
-  // console.log("product!!!!!!!", product)
 
   const [title, setTitle] = useState(review.title)
   const [content, setContent] = useState(review.content)
@@ -32,7 +31,6 @@ const EditReview = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = { ...review, userId: sessionUser.id, productId: product.id, title, content, User: sessionUser }
-    console.log(payload, "PAYLOAD")
     setErrors([]);
     const editedReviewId = await dispatch(editReview(payload))
       .catch(async (res) => {

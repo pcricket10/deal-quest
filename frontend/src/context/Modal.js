@@ -1,5 +1,5 @@
 // frontend/src/context/Modal.js
-import React, { useContext, useRef, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
 

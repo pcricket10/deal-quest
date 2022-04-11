@@ -43,14 +43,12 @@ export const createProduct = newProduct => async (dispatch) => {
     body: JSON.stringify(newProduct)
   });
   const Product = await response.json();
-  // console.log("PRODUCT RESPONSE", Product)
   dispatch(addProduct(Product));
   return Product.id;
 
 }
 
 export const editProduct = editedProduct => async (dispatch) => {
-  // console.log(editedProduct.id, "editedProduct.id")
   const response = await csrfFetch(`/api/products/${editedProduct.id}/edit`, {
     method: "PUT",
     headers: {
@@ -60,7 +58,6 @@ export const editProduct = editedProduct => async (dispatch) => {
   });
   const product = await response.json();
   dispatch(addProduct(product));
-  // console.log(product, "product")
   return editedProduct.id;
 }
 
@@ -83,21 +80,16 @@ const productReducer = (state = {}, action) => {
 
     case LOAD_PRODUCTS:
       const loadedProducts = {}
-      console.log(action.products, "ACTION PRODUCST")
       action.products.forEach(product => loadedProducts[product.id] = product);
-      // console.log(loadedProducts, "LOADEDPRODUCTS!")
       return { ...state, ...loadedProducts };
     case ADD_PRODUCT:
       // const newState = {...state}
       // newState[action.product.id] = action.product
       // const addedProduct = action.product
-      // console.log(addedProduct, "ADDEDPRODUCTS!")
       // return { ...state, addedProduct }
       const newState = { ...state };
-      console.log(action, "ACTION PRODUCT ACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCTACTION PRODUCT");
 
       newState[action.product.id] = action.product
-      // console.log(newState, "NEW STATE!!!!")
       return newState;
 
 

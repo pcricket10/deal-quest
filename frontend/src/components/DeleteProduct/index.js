@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
-import { editProduct, fetchOneProduct, deleteProduct } from '../../store/products';
-import { fetchCurrencies } from '../../store/currencies';
-import "./DeleteProduct.css"
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { deleteProduct } from '../../store/products';
+import "./DeleteProduct.css";
 
 const DeleteProduct = () => {
   const { id } = useParams();

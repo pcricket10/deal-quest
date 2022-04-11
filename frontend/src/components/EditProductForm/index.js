@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
-import { editProduct, fetchOneProduct } from '../../store/products';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { fetchCurrencies } from '../../store/currencies';
-import "./EditProductForm.css"
+import { editProduct } from '../../store/products';
+import "./EditProductForm.css";
 
 const EditProductForm = () => {
   const { id } = useParams();
   let product = useSelector(state => state.productState[+id])
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log("PRODUCT STSTE!", product)
   const sessionUser = useSelector(state => state.session.user)
   const currencies = useSelector(state => state.currencyState)
 

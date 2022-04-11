@@ -1,7 +1,7 @@
 //frontend/src/components/ProductDetails/index.js
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../../store/products';
 import DeleteProduct from '../DeleteProduct';
 import EditProductForm from '../EditProductForm';

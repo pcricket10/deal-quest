@@ -12,9 +12,6 @@ const NewReview = ({ productId }) => {
 
   const sessionUser = useSelector(state => state.session.user)
   const product = useSelector(state => state.productState)
-  // console.log(product, "REVIEW PRODUCT!!")
-
-  // console.log(sessionUser);
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -36,7 +33,6 @@ const NewReview = ({ productId }) => {
     // });
 
     if (createdReview) {
-      console.log(product, "[][][]srtwervsrsaerbserbsers[][][][]")
         ;
       history.push(`/products/${productId}`)
     }

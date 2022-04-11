@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { deleteReview } from '../../store/reviews';
-import "./DeleteReview.css"
+import "./DeleteReview.css";
 
 
 
 const DeleteReview = ({ reviewId }) => {
   const { id } = useParams();
-  console.log(id, reviewId, "utyututy")
 
   const dispatch = useDispatch();
   const history = useHistory();

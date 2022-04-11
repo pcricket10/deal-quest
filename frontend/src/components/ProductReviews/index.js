@@ -1,21 +1,17 @@
 
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Route, Switch, NavLink, useParams } from 'react-router-dom';
-import { fetchOneProduct } from '../../store/products';
-import { fetchOneProductReviews, fetchOneReview } from '../../store/reviews'
-import NewReview from '../NewReview/index'
-import EditReview from '../EditReview/index'
-import DeleteReview from '../DeleteReview/index'
-import "./ProductReviews.css"
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import DeleteReview from '../DeleteReview/index';
+import EditReview from '../EditReview/index';
+import NewReview from '../NewReview/index';
+import "./ProductReviews.css";
 
 const ProductReviews = ({ product }) => {
   const sessionUser = useSelector(state => state.session.user);
   const { id } = useParams()
-  console.log(id, "IDDD")
   const review = useSelector(state => state.reviewState[+id])
   const dispatch = useDispatch();
-  console.log(product, "PRTODUCTTTE");
   const [isLoaded, setIsLoaded] = useState(false)
   const [edit, setEdit] = useState(null);
   const [remove, setRemove] = useState(null);
@@ -39,7 +35,6 @@ const ProductReviews = ({ product }) => {
     canReview = (<NewReview productId={product.id} />)
   }
 
-  //   // console.log(sessionUser.id, '==========', product.Reviews.id)
 
   // }
 
@@ -64,7 +59,6 @@ const ProductReviews = ({ product }) => {
 
 
   // if (!product.Reviews) return null;
-  console.log(review, "PROD REV", product.Reviews);
   // if (!review) return null;
 
   return product.Reviews && (
@@ -77,11 +71,8 @@ const ProductReviews = ({ product }) => {
 
 
           product.Reviews && Object.values(product.Reviews).map(({ id, productId, title, content, User }) => {
-            // console.log(id, "i", userId, "ui", productId, "pi", title, "t", content, "c", User, "u")
             let canEditDelete
-            // console.log(sessionUser.id, "ID", userId, "USERID")
             if (sessionUser && sessionUser.id === User.id) {
-              // console.log(id, "IDDD")
 
               let theForm
               if (edit) {
