@@ -6,11 +6,20 @@ img.thumbnail {
 }
 
 .product {
-  margin: 5px;
+  margin-top: 5px;
   padding: 20px;
+
   display: flex;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
+
+}
+.product-link {
+  padding: 0;
+  margin: 0;
+}
+#products {
+  background-color: rgb(236, 232, 232);
 }
 
 .product-user-img {
@@ -34,6 +43,8 @@ img.thumbnail {
 }
 
 .product:hover {
-  background-color: darkblue;
+  background-color: gray;
+
+  /* border-radius: 100px; */
   color: white;
 }

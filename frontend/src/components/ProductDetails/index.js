@@ -42,20 +42,20 @@ const ProductDetails = () => {
 
 
 
-  if (edit) {
+  // if (edit) {
 
-    theForm = (
-      <div className='edit-form'>
-        <EditProductForm />
-      </div>
-    )
-  }
-  else if (remove) {
+  //   theForm = (
+  //     <div className='edit-form'>
+  //       <EditProductForm />
+  //     </div>
+  //   )
+  // }
+  // else if (remove) {
 
-    theForm = (<div className='delete-form'>
-      <DeleteProduct />
-    </div>)
-  }
+  //   theForm = (<div className='delete-form'>
+  //     <DeleteProduct />
+  //   </div>)
+  // }
 
 
   useEffect(() => {
@@ -68,8 +68,8 @@ const ProductDetails = () => {
 
   return product && (
     <>
-      <h1>{product?.name}</h1>
-      <img src={product?.imgUrl}></img>
+      <h1 className='title'>{product?.name}</h1>
+      <img className='product-img' src={product?.imgUrl}></img>
       <p>{product?.price} {product?.Currency.unit}</p>
       <p>{product?.User?.username}</p>
       {editAndDelete}
