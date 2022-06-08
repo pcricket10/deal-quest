@@ -49,3 +49,8 @@ li:hover {
   background-color: darkblue;
   color: white;
 }
+
+h1.title {
+  font-family: cursive;
+  text-shadow: 0 0 5px darkslategray;
+}

@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 import DeleteReview from '../DeleteReview/index';
 import EditReview from '../EditReview/index';
 import NewReview from '../NewReview/index';
+import Review from '../Review/index'
 import "./ProductReviews.css";
 
 const ProductReviews = ({ product }) => {
   const sessionUser = useSelector(state => state.session.user);
   const { id } = useParams()
-  const review = useSelector(state => state.reviewState[+id])
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false)
   const [edit, setEdit] = useState(null);
@@ -19,7 +19,8 @@ const ProductReviews = ({ product }) => {
   let canReview;
   let canEdit
   let theForm
-
+  const reviews = product.Reviews;
+  console.log(reviews, "@##$!!!!")
   // if (sessionUser && product.Reviews && sessionUser.id === product.Reviews.userId) {
   //   canEdit = (
   //     <div className='edit-and-delete'>
@@ -31,9 +32,9 @@ const ProductReviews = ({ product }) => {
   //     // <button>YEAHHHHBOOIIIIIIII</button>
 
   //   )
-  if (sessionUser) {
-    canReview = (<NewReview productId={product.id} />)
-  }
+  // if (sessionUser) {
+  //   canReview = (<NewReview productId={product.id} />)
+  // }
 
 
   // }
@@ -61,70 +62,85 @@ const ProductReviews = ({ product }) => {
   // if (!product.Reviews) return null;
   // if (!review) return null;
 
-  return product.Reviews && (
-    <div>
-      <h1>Product Reviews</h1>
+  if (sessionUser) {
+    canReview = (<NewReview productId={product.id} />)
+  }
+  return (
+    <>
       {canReview}
-      <div id="reviews">
-        {
+      {reviews?.map((review) =>
+      (<>
+
+        <Review review={review} />
+      </>)
+      )}
+    </>
 
 
 
-          product.Reviews && Object.values(product.Reviews).map(({ id, productId, title, content, User }) => {
-            let canEditDelete
-            if (sessionUser && sessionUser.id === User.id) {
-
-              let theForm
-              if (edit) {
-
-                theForm = (
-                  <div className='edit-form'>
-                    <EditReview reviewId={id} />
-                  </div>
-                )
-              }
-              else if (remove) {
-
-                theForm = (<div className='delete-form'>
-                  <DeleteReview reviewId={id} />
-                </div>)
-                // setRemove(false)
-
-              }
+    // <div>
+    //   <h1>Product Reviews</h1>
+    //   {canReview}
+    //   <div id="reviews">
+    //     {
 
 
 
-              canEditDelete = (
+    //       product.Reviews && Object.values(product.Reviews).map(({ id, productId, title, content, User }) => {
+    //         let canEditDelete
+    //         if (sessionUser && sessionUser.id === User.id) {
 
-                <div className='edit-and-delete'>
-                  {/* <NavLink to={`/products/${product.id}/edit`}><button>edit</button></NavLink>
-                  <NavLink to={`/products/${product.id}/delete`}><button>delete</button></NavLink> */}
-                  <button onClick={(e) => { setEdit(!edit); setRemove(null); }}>edit</button>
-                  <button onClick={(e) => { setRemove(!remove); setEdit(null); }}>delete</button>
-                  {theForm}
-                </div>
-              )
+    //           let theForm
+    //           if (edit) {
 
-              // theForm = null;
-            }
-            // else canEditDelete = null
+    //             theForm = (
+    //               <div className='edit-form'>
+    //                 <EditReview reviewId={id} />
+    //               </div>
+    //             )
+    //           }
+    //           else if (remove) {
 
-            return product.Reviews && (
-              <div key={id} className="review">
-                <h2 className="review-title">{title}</h2>
-                <h2>{User?.username}</h2>
-                <p>{content}</p>
-                {canEditDelete}
-              </div>
+    //             theForm = (<div className='delete-form'>
+    //               <DeleteReview reviewId={id} />
+    //             </div>)
+    //             // setRemove(false)
 
+    //           }
 
 
-            )
-          })
-        }
-      </div>
 
-    </div>
+    //           canEditDelete = (
+
+    //             <div className='edit-and-delete'>
+    //               {/* <NavLink to={`/products/${product.id}/edit`}><button>edit</button></NavLink>
+    //               <NavLink to={`/products/${product.id}/delete`}><button>delete</button></NavLink> */}
+    //               <button onClick={(e) => { setEdit(!edit); setRemove(null); }}>edit</button>
+    //               <button onClick={(e) => { setRemove(!remove); setEdit(null); }}>delete</button>
+    //               {theForm}
+    //             </div>
+    //           )
+
+    //           // theForm = null;
+    //         }
+    //         // else canEditDelete = null
+
+    //         return product.Reviews && (
+    //           <div key={id} className="review">
+    //             <h2 className="review-title">{title}</h2>
+    //             <h2>{User?.username}</h2>
+    //             <p>{content}</p>
+    //             {canEditDelete}
+    //           </div>
+
+
+
+    //         )
+    //       })
+    //     }
+    //   </div>
+
+    // </div>
   )
 }
 

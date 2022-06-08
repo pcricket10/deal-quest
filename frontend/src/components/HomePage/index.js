@@ -18,12 +18,12 @@ const HomePage = () => {
   if (!isLoaded) return null;
   return (
     <div>
-      <h1>Deal Quest:</h1>
+      <h1 className='title'>Deal Quest:</h1>
       <h3>Your one-stop shop for Weapons, items, and power-ups!</h3>
       <div id="products">
         {
           products && Object.values(products).map(({ id, userId, name, imgUrl, price, Currency, User }) => (
-            <NavLink to={`/products/${id}`} key={id}>
+            <NavLink className="product-link" to={`/products/${id}`} key={id}>
               <div className="product">
                 <div className='product-user-img'>
                   <img className="thumbnail" src={imgUrl} alt={`${name} image`} />
